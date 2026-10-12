@@ -1,0 +1,17 @@
+import {readFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const domain=await readFile(new URL('../domain.js',import.meta.url),'utf8');
+const {quoteTotal,validateReview,overdue}=await import('data:text/javascript;base64,'+Buffer.from(domain).toString('base64'));
+const items=[{qty:5,price:100,mpn:'TAB-A',division:'Consumo'},{qty:4,price:200,mpn:'TAB-B',division:'Comercial'}];
+assert.equal(quoteTotal(items),1300);
+assert.equal(quoteTotal([{qty:5,price:0}]),0);
+assert.equal(quoteTotal([{qty:5,price:null}]),null);
+assert.match(validateReview('Precio enviado al canal','Aplica',items,0),/contrato/);
+assert.equal(validateReview('Precio enviado al canal','No aplica',items,0),'');
+assert.match(validateReview('Modelo definido','Por definir',[{mpn:'',division:''}],0),/MPN/);
+assert.match(validateReview('Pendiente de aprobación Lenovo','No aplica',items,0),/registro/);
+assert.equal(validateReview('Descuento aprobado / contrato recibido','Aplica',items,1),'');
+assert.equal(overdue({stage:'Ganado',followup:'2026-10-01'},'2026-10-12'),false);
+assert.equal(overdue({stage:'Solicitud recibida',followup:'2026-10-01'},'2026-10-12'),true);
+assert.equal(overdue({stage:'Solicitud recibida',followup:'2026-10-12'},'2026-10-12'),false);
+console.log('11 verificaciones de cálculos y reglas: OK');
