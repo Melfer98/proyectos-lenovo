@@ -34,3 +34,5 @@
 .detail-dialog .review-product .detail-meta{background:#faf7f8;padding:16px;margin-bottom:0}
 .detail-dialog .detail-heading{padding:12px 0 22px}
 @media(max-width:760px){.detail-dialog .detail-section,.detail-dialog .detail-meta{padding:16px}.detail-dialog .review-product{padding:14px}.detail-dialog .detail-meta{gap:14px;overflow-wrap:anywhere}}
+
+.detail-dialog .detail-meta,.detail-dialog .detail-section,.detail-dialog .detail-section:has(.review-product),.detail-dialog #reviewForm>.detail-section,.detail-dialog .detail-section:has(.timeline),.detail-dialog .review-product .detail-meta{background:#EAEEF5;border-color:#d5dbe5}.detail-dialog .detail-section{border-left-color:#64131e}.detail-dialog .detail-section h3{border-bottom-color:#d5dbe5}
