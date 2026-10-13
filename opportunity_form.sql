@@ -9,7 +9,6 @@ alter table public.projects
 create function public.require_opportunity_information() returns trigger language plpgsql security invoker set search_path='' as $$
 begin
  if coalesce(length(btrim(new.phone)),0)=0 then raise exception 'Teléfono de contacto del canal obligatorio';end if;
- if new.final_segment is null then raise exception 'Selecciona el segmento del cliente final';end if;
  if coalesce(length(btrim(new.final_contact)),0)=0 then raise exception 'Nombre del contacto de la institución obligatorio';end if;
  if coalesce(length(btrim(new.final_email)),0)=0 or new.final_email not like '%_@_%._%' then raise exception 'Correo del contacto de la institución obligatorio y válido';end if;
  if new.is_tender is null then raise exception 'Responde si la oportunidad corresponde a una licitación';end if;
