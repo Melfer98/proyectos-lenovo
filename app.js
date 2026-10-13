@@ -1,4 +1,4 @@
-import {STAGES,FLOW,matchesStage,CATEGORIES,CLOSED,money,overdue,quoteTotal,validateReview,buildRequest,nextStage,approvalLabel} from './domain.js?v=product-approval-1';
+import {STAGES,FLOW,matchesStage,CATEGORIES,CLOSED,money,overdue,quoteTotal,validateReview,buildRequest,nextStage,approvalLabel} from './domain.js?v=channel-auto-refresh-1';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const cfg=window.PROJECT_CONFIG||{},ready=!!cfg.supabaseUrl&&!!cfg.supabaseKey;
@@ -23,7 +23,7 @@ async function req(path,{method='GET',body,auth=true,headers={},raw=false}={}){
 async function userRefresh(){if(!ready||!session){staff=false;company='';syncCompany();projects=[];$('#account').textContent='Iniciar sesión';render();return;}try{const u=await req('/auth/v1/user');session.user=u;sessionStorage.setItem('project_session',JSON.stringify(session));staff=(await req('/rest/v1/project_staff?select=user_id&user_id=eq.'+u.id)).length>0;$('#account').textContent=staff?'Equipo PM · Salir':'Mi cuenta · Salir';$('#listCaption').textContent=staff?'Solicitudes del canal y seguimiento del equipo.':'Consulta el paso actual de tus oportunidades y registra su resultado.';const profiles=await req('/rest/v1/channel_profiles?select=legal_name&user_id=eq.'+u.id);company=profiles[0]?.legal_name||'';syncCompany();if(!company)$('#companyDialog').showModal();await load();}catch(e){session=null;staff=false;company='';syncCompany();sessionStorage.removeItem('project_session');projects=[];render();notice(e.message,true);$('#account').textContent='Iniciar sesión';}}
 async function load(){if(!session)return;projects=await req('/rest/v1/projects?select='+(staff?'*':'id,code,title,stage,offer_valid_until,is_tender')+'&order=created_at.desc');if(staff){const details=await req('/rest/v1/project_details?select=project_id,items');projects=projects.map(p=>({...p,review:details.find(d=>d.project_id===p.id)}));}render();}
 function syncCompany(){$('#channelIdentity').textContent=company||'Sin sesión iniciada';const input=$('#requestForm [name=channel]');input.value=company;input.readOnly=!!company;}
-function render(){renderPipeline();
+function render(){renderPipeline();$('#refresh').classList.toggle('hidden',!staff);
  $('#divisionFilter').classList.toggle('hidden',!staff);if(!staff)$('#divisionFilter').value='';$('#typeFilter').classList.remove('hidden');
  $('#approvalCount').closest('article').classList.remove('hidden');
  $('#overdueCount').closest('article').classList.remove('hidden');
