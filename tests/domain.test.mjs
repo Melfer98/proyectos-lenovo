@@ -2,7 +2,7 @@ import {readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const domain=await readFile(new URL('../domain.js',import.meta.url),'utf8');
 const {quoteTotal,validateReview,overdue,buildRequest,nextStage,approvalLabel}=await import('data:text/javascript;base64,'+Buffer.from(domain).toString('base64'));
-const items=[{qty:5,price:100,mpn:'TAB-A',division:'Consumo'},{qty:4,price:200,mpn:'TAB-B',division:'Comercial'}];
+const items=[{qty:5,price:100,mpn:'TAB-A',division:'Consumo',approval:'Aprobado con descuento'},{qty:4,price:200,mpn:'TAB-B',division:'Comercial',approval:'Aprobado sin descuento'}];
 assert.equal(quoteTotal(items),1300);
 assert.equal(quoteTotal([{qty:5,price:0}]),0);
 assert.equal(quoteTotal([{qty:5,price:null}]),null);
@@ -37,3 +37,7 @@ assert.throws(()=>nextStage('Ganado','Aplica'),/cerrada/);
 assert.throws(()=>nextStage('Solicitud recibida','Por definir','lost'),/oferta/);
 assert.match(approvalLabel('Modelo definido','No aplica'),/precio enviado/);
 console.log('Aprobaciones: avance, bifurcación, pausa y cierre verificados');
+
+assert.match(validateReview('Precio enviado al canal','Aplica',[items[0],{...items[1],approval:'Pendiente de aprobación'}]),/cada producto/);
+assert.equal(validateReview('Pendiente de aprobación Lenovo','Aplica',[items[0],{...items[1],approval:'Pendiente de aprobación'}]),'');
+console.log('Aprobación parcial: bloquea cotización y permite seguimiento pendiente OK');
