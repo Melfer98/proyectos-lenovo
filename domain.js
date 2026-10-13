@@ -1,5 +1,5 @@
 export const STAGES=['Solicitud recibida','En revisión PM','Pendiente de información','Modelo definido','Pendiente de registro Lenovo','Pendiente de aprobación Lenovo','Descuento aprobado / contrato recibido','Precio enviado al canal','Oferta presentada','Pendiente de resultado','Ganado','Perdido','Cancelado'];
-export const CATEGORIES=['Computadoras','Tablets','Monitores','Accesorios','Servicios','Otros'];
+export const CATEGORIES=["Computadoras portátiles","Tablets","Computadoras de escritorio y todo en uno","Estaciones de trabajo","Monitores","Dispositivos inteligentes","Accesorios","Servicios"];
 export const CLOSED=['Ganado','Perdido','Cancelado'];
 export function buildRequest(form,items,company,userId){
  const get=k=>String(form[k]||'').trim();
