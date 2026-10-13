@@ -36,3 +36,5 @@
 @media(max-width:760px){.detail-dialog .detail-section,.detail-dialog .detail-meta{padding:16px}.detail-dialog .review-product{padding:14px}.detail-dialog .detail-meta{gap:14px;overflow-wrap:anywhere}}
 
 .detail-dialog .detail-meta,.detail-dialog .detail-section,.detail-dialog .detail-section:has(.review-product),.detail-dialog #reviewForm>.detail-section,.detail-dialog .detail-section:has(.timeline),.detail-dialog .review-product .detail-meta{background:#EAEEF5;border-color:#d5dbe5}.detail-dialog .detail-section{border-left-color:#64131e}.detail-dialog .detail-section h3{border-bottom-color:#d5dbe5}
+
+.detail-dialog>.dialog-title,#detailContent>.dialog-title{position:sticky;top:-30px;z-index:5;background:white;padding:10px 0;min-height:46px}.detail-close{display:grid;place-items:center;margin-left:auto;width:38px;height:38px;border-radius:50%;background:#EAEEF5;color:#64131e;border:1px solid #d5dbe5;flex-shrink:0}.detail-close:hover{background:#64131e;color:white}.detail-close:focus-visible{outline:3px solid #b8252e;outline-offset:2px}@media(max-width:760px){#detailContent>.dialog-title{top:-22px}}
