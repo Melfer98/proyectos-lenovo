@@ -40,3 +40,5 @@ export const FLOW=[
  {label:'Seguimiento y resultado',counterStages:['Ganado'],description:'El canal presenta la oferta. Se da seguimiento hasta Ganado, Perdido o Cancelado.',stages:['Oferta presentada','Pendiente de resultado','Ganado','Perdido','Cancelado']}
 ];
 export function matchesStage(stage,filter){if(filter.startsWith('flow:'))return FLOW[Number(filter.slice(5))]?.stages.includes(stage)||false;return !filter||stage===filter;}
+
+export function canRenew(p,today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/El_Salvador',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())){if(CLOSED.includes(p.stage)||!p.offer_valid_until)return false;const opens=new Date(p.offer_valid_until+'T12:00:00Z');opens.setUTCDate(opens.getUTCDate()-7);return today>=opens.toISOString().slice(0,10);}
