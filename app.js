@@ -1,4 +1,4 @@
-import {STAGES,FLOW,matchesStage,CATEGORIES,CLOSED,money,overdue,quoteTotal,validateReview,buildRequest,nextStage,approvalLabel} from './domain.js?v=seven-steps-1';
+import {STAGES,FLOW,matchesStage,CATEGORIES,CLOSED,money,overdue,quoteTotal,validateReview,buildRequest,nextStage,approvalLabel} from './domain.js?v=commercial-won-1';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const cfg=window.PROJECT_CONFIG||{},ready=!!cfg.supabaseUrl&&!!cfg.supabaseKey;
@@ -33,7 +33,7 @@ function render(){renderPipeline();
 function renderPipeline(){
  const panel=$('#pipelinePanel');panel.classList.toggle('hidden',!staff);
  if(!staff){$('#pipelineSteps').innerHTML='';$('#pipelineBranches').innerHTML='';return;}
- const step=(phase,i)=>{const key=`flow:${i}`;const count=projects.filter(p=>phase.stages.includes(p.stage)).length;const selected=$('#stageFilter').value===key;return `<button type="button" class="pipeline-step ${selected?'selected':''}" data-stage="${key}" aria-pressed="${selected}" title="${esc(phase.description)}"><span class="pipeline-index">${String(i+1).padStart(2,'0')}</span><strong>${count}</strong><span class="pipeline-label">${esc(phase.label)}</span></button>`;};
+ const step=(phase,i)=>{const key=phase.counterStages?'Ganado':`flow:${i}`;const count=projects.filter(p=>(phase.counterStages||phase.stages).includes(p.stage)).length;const selected=$('#stageFilter').value===key;return `<button type="button" class="pipeline-step ${selected?'selected':''}" data-stage="${key}" aria-pressed="${selected}" title="${esc(phase.description)}"><span class="pipeline-index">${String(i+1).padStart(2,'0')}</span><strong>${count}</strong><span class="pipeline-label">${esc(phase.label)}</span>${phase.counterStages?'<small>Ganadas</small>':''}</button>`;};
  $('#pipelineSteps').innerHTML=FLOW.map(step).join('');
  $('#pipelineBranches').innerHTML=['Ganado','Perdido','Cancelado'].map(stage=>`<button type="button" class="pipeline-branch ${$('#stageFilter').value===stage?'selected':''}" data-stage="${esc(stage)}">${esc(stage)} <strong>${projects.filter(p=>p.stage===stage).length}</strong></button>`).join('')+'<span class="muted">Resultados del paso 07. Si no aplica registro Lenovo, se continúa con el precio al canal.</span>';
 }

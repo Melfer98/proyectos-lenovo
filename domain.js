@@ -31,12 +31,12 @@ export function validateReview(stage,registration,items,contractCount){if(!STAGE
 
 
 export const FLOW=[
- {label:'Solicitudes recibidas',description:'El canal envía la solicitud mediante el formulario.',stages:['Solicitud recibida']},
- {label:'Revisión del PM',description:'El PM verifica la información y si los productos corresponden a Consumo, Comercial o ambos.',stages:['En revisión PM','Pendiente de información']},
- {label:'Definición de modelos',description:'El PM define el MPN o modelo por producto.',stages:['Modelo definido']},
- {label:'Se procede Registro Lenovo',description:'El PM procede con el registro Lenovo cuando aplica.',stages:['Pendiente de registro Lenovo']},
- {label:'Aprobación con descuento o sin descuento',description:'El PM confirma la aprobación de Lenovo, con descuento o sin descuento.',stages:['Pendiente de aprobación Lenovo','Descuento aprobado / contrato recibido']},
- {label:'Se envía la oferta al canal / precio',description:'El PM envía al canal la oferta y el precio sin IVA.',stages:['Precio enviado al canal']},
- {label:'Oferta y resultado',description:'El canal presenta la oferta. Se da seguimiento hasta Ganado, Perdido o Cancelado.',stages:['Oferta presentada','Pendiente de resultado','Ganado','Perdido','Cancelado']}
+ {label:'Recepción de la oportunidad',description:'El canal envía la solicitud mediante el formulario.',stages:['Solicitud recibida']},
+ {label:'Evaluación de requerimientos',description:'El PM verifica la información y si los productos corresponden a Consumo, Comercial o ambos.',stages:['En revisión PM','Pendiente de información']},
+ {label:'Selección de productos y modelos',description:'El PM define el MPN o modelo por producto.',stages:['Modelo definido']},
+ {label:'Gestión de registro Lenovo',description:'El PM procede con el registro Lenovo cuando aplica.',stages:['Pendiente de registro Lenovo']},
+ {label:'Confirmación de precio y descuento',description:'El PM confirma la aprobación de Lenovo, con descuento o sin descuento.',stages:['Pendiente de aprobación Lenovo','Descuento aprobado / contrato recibido']},
+ {label:'Cotización al canal',description:'El PM envía al canal la oferta y el precio sin IVA.',stages:['Precio enviado al canal']},
+ {label:'Seguimiento y resultado',counterStages:['Ganado'],description:'El canal presenta la oferta. Se da seguimiento hasta Ganado, Perdido o Cancelado.',stages:['Oferta presentada','Pendiente de resultado','Ganado','Perdido','Cancelado']}
 ];
 export function matchesStage(stage,filter){if(filter.startsWith('flow:'))return FLOW[Number(filter.slice(5))]?.stages.includes(stage)||false;return !filter||stage===filter;}
