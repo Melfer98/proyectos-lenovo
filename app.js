@@ -1,4 +1,4 @@
-import {STAGES,CATEGORIES,CLOSED,money,overdue,quoteTotal,validateReview,buildRequest,nextStage,approvalLabel} from './domain.js?v=pm-simple-1';
+import {STAGES,CATEGORIES,CLOSED,money,overdue,quoteTotal,validateReview,buildRequest,nextStage,approvalLabel} from './domain.js?v=approval-merged-1';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const cfg=window.PROJECT_CONFIG||{},ready=!!cfg.supabaseUrl&&!!cfg.supabaseKey;

@@ -10,7 +10,7 @@ assert.equal(validateReview('Precio enviado al canal','Aplica',items,0),'');
 assert.equal(validateReview('Precio enviado al canal','No aplica',items,0),'');
 assert.match(validateReview('Modelo definido','Por definir',[{mpn:'',division:''}],0),/MPN/);
 assert.match(validateReview('Pendiente de aprobación Lenovo','No aplica',items,0),/registro/);
-assert.equal(validateReview('Descuento aprobado / contrato recibido','Aplica',items,1),'');
+assert.equal(nextStage('Pendiente de aprobación Lenovo','Aplica'),'Precio enviado al canal');
 assert.equal(overdue({stage:'Ganado',offer_valid_until:'2026-10-01'},'2026-10-12'),false);
 assert.equal(overdue({stage:'Solicitud recibida',offer_valid_until:'2026-10-01'},'2026-10-12'),true);
 assert.equal(overdue({stage:'Solicitud recibida',offer_valid_until:'2026-10-12'},'2026-10-12'),false);
