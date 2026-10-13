@@ -1,6 +1,17 @@
 export const STAGES=['Solicitud recibida','En revisión PM','Pendiente de información','Modelo definido','Pendiente de registro Lenovo','Pendiente de aprobación Lenovo','Descuento aprobado / contrato recibido','Precio enviado al canal','Oferta presentada','Pendiente de resultado','Ganado','Perdido','Cancelado'];
-export const CATEGORIES=["Laptops","Tablets","Desktops & AIOs","Workstations","Monitores","Dispositivos inteligentes","Accesorios","Servicios","Otros"];
+export const CATEGORIES=["Laptops", "Tablets", "Desktops & AIOs", "Workstations", "Monitores", "Dispositivos inteligentes", "Accesorios", "Servicios", "Otros"];
 export const CLOSED=['Ganado','Perdido','Cancelado'];
+export function nextStage(stage,registration,action='advance'){
+ if(action==='save')return stage;
+ if(CLOSED.includes(stage))throw Error('La oportunidad está cerrada.');
+ if(action==='cancel')return 'Cancelado';
+ if(action==='lost'){if(!['Precio enviado al canal','Oferta presentada','Pendiente de resultado'].includes(stage))throw Error('Todavía no hay una oferta para marcar como perdida.');return 'Perdido';}
+ if(action==='information'){if(!['Solicitud recibida','En revisión PM'].includes(stage))throw Error('La información se solicita durante la revisión.');return 'Pendiente de información';}
+ const next={'Solicitud recibida':'En revisión PM','En revisión PM':'Modelo definido','Pendiente de información':'En revisión PM','Pendiente de registro Lenovo':'Pendiente de aprobación Lenovo','Pendiente de aprobación Lenovo':'Descuento aprobado / contrato recibido','Descuento aprobado / contrato recibido':'Precio enviado al canal','Precio enviado al canal':'Oferta presentada','Oferta presentada':'Pendiente de resultado','Pendiente de resultado':'Ganado'};
+ if(stage==='Modelo definido'){if(registration==='Aplica')return 'Pendiente de registro Lenovo';if(registration==='No aplica')return 'Precio enviado al canal';throw Error('Confirma si aplica registro Lenovo.');}
+ if(action!=='advance'||!next[stage])throw Error('Acción no disponible en este paso.');return next[stage];
+}
+export function approvalLabel(stage,registration){return {'Solicitud recibida':'Iniciar revisión','En revisión PM':'Aprobar revisión y modelos','Pendiente de información':'Retomar revisión','Modelo definido':registration==='No aplica'?'Confirmar precio enviado al canal':'Enviar a registro Lenovo','Pendiente de registro Lenovo':'Confirmar registro de oportunidad','Pendiente de aprobación Lenovo':'Confirmar aprobación y contrato','Descuento aprobado / contrato recibido':'Confirmar precio enviado al canal','Precio enviado al canal':'Confirmar oferta presentada','Oferta presentada':'Iniciar seguimiento de resultado','Pendiente de resultado':'Confirmar oportunidad ganada'}[stage]||'';}
 export function buildRequest(form,items,company,userId){
  const get=k=>String(form[k]||'').trim();
  if(!company)throw Error('Completa la Razón Social del canal.');

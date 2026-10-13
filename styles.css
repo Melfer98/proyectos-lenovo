@@ -5,3 +5,5 @@
 #channelIdentity{overflow-wrap:anywhere;line-height:1.6}
 
 .opportunity-dates{margin-top:24px}.products-heading{margin-top:28px!important;padding-top:22px!important;border-top:1px solid var(--border)}
+
+.approval-actions{display:flex;gap:12px;flex-wrap:wrap;padding-top:20px;margin-top:20px;border-top:1px solid var(--border)}#reviewError{color:#a24234}

@@ -1,7 +1,7 @@
 import {readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const domain=await readFile(new URL('../domain.js',import.meta.url),'utf8');
-const {quoteTotal,validateReview,overdue,buildRequest}=await import('data:text/javascript;base64,'+Buffer.from(domain).toString('base64'));
+const {quoteTotal,validateReview,overdue,buildRequest,nextStage,approvalLabel}=await import('data:text/javascript;base64,'+Buffer.from(domain).toString('base64'));
 const items=[{qty:5,price:100,mpn:'TAB-A',division:'Consumo'},{qty:4,price:200,mpn:'TAB-B',division:'Comercial'}];
 assert.equal(quoteTotal(items),1300);
 assert.equal(quoteTotal([{qty:5,price:0}]),0);
@@ -26,3 +26,14 @@ assert.throws(()=>buildRequest({...form,validity_days:'0'},items,'Canal','user')
 assert.throws(()=>buildRequest({...form,validity_days:'1.5'},items,'Canal','user'),/vigencia/);
 assert.throws(()=>buildRequest({...form,is_tender:''},items,'Canal','user'),/licitación/);
 console.log('Formulario: campos obligatorios, Sí/No y vigencia verificados');
+assert.equal(nextStage('Solicitud recibida','Por definir'),'En revisión PM');
+assert.equal(nextStage('En revisión PM','Aplica'),'Modelo definido');
+assert.equal(nextStage('Modelo definido','Aplica'),'Pendiente de registro Lenovo');
+assert.equal(nextStage('Modelo definido','No aplica'),'Precio enviado al canal');
+assert.throws(()=>nextStage('Modelo definido','Por definir'),/registro/);
+assert.equal(nextStage('Pendiente de información','Por definir'),'En revisión PM');
+assert.equal(nextStage('En revisión PM','Por definir','save'),'En revisión PM');
+assert.throws(()=>nextStage('Ganado','Aplica'),/cerrada/);
+assert.throws(()=>nextStage('Solicitud recibida','Por definir','lost'),/oferta/);
+assert.match(approvalLabel('Modelo definido','No aplica'),/precio enviado/);
+console.log('Aprobaciones: avance, bifurcación, pausa y cierre verificados');
