@@ -20,3 +20,5 @@
 .review-grid{grid-template-columns:1fr 1fr 1fr}@media(max-width:760px){.review-grid{grid-template-columns:1fr}}
 
 @media(max-width:760px){.detail-dialog{width:94vw;max-width:94vw}}
+
+.brand{flex-direction:column;align-items:flex-start;gap:8px}.brand-logo{display:block;width:156px;height:auto;object-fit:contain}.brand>span{font-size:12px;letter-spacing:1px}@media(max-width:760px){.brand{flex-direction:row;align-items:center;gap:16px}.brand-logo{width:120px}}
