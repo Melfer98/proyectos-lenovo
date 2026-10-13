@@ -45,3 +45,6 @@ console.log('Aprobación parcial: bloquea cotización y permite seguimiento pend
 const {canRenew}=await import('data:text/javascript;base64,'+Buffer.from(domain).toString('base64'));
 const expiring={stage:'Precio enviado al canal',offer_valid_until:'2026-10-20'};
 assert.equal(canRenew(expiring,'2026-10-12'),false);assert.equal(canRenew(expiring,'2026-10-13'),true);assert.equal(canRenew(expiring,'2026-10-21'),true);assert.equal(canRenew({...expiring,stage:'Ganado'},'2026-10-21'),false);assert.equal(canRenew({...expiring,offer_valid_until:null},'2026-10-21'),false);console.log('Renovación: ventana 7 días, vencidas y cierres OK');
+
+const {matchesOpportunityStatus}=await import('data:text/javascript;base64,'+Buffer.from(domain).toString('base64'));
+assert.equal(matchesOpportunityStatus({stage:'Precio enviado al canal',offer_valid_until:'2026-10-11'},'Vencido','2026-10-12'),true);assert.equal(matchesOpportunityStatus({stage:'Ganado',offer_valid_until:'2026-10-11'},'Vencido','2026-10-12'),false);assert.equal(matchesOpportunityStatus({stage:'Precio enviado al canal',offer_valid_until:'2026-10-12'},'Vencido','2026-10-12'),false);console.log('Estatus Vencido: vigencia y oportunidades cerradas OK');
