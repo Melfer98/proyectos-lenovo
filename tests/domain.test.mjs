@@ -1,7 +1,7 @@
 import {readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const domain=await readFile(new URL('../domain.js',import.meta.url),'utf8');
-const {quoteTotal,validateReview,overdue}=await import('data:text/javascript;base64,'+Buffer.from(domain).toString('base64'));
+const {quoteTotal,validateReview,overdue,buildRequest}=await import('data:text/javascript;base64,'+Buffer.from(domain).toString('base64'));
 const items=[{qty:5,price:100,mpn:'TAB-A',division:'Consumo'},{qty:4,price:200,mpn:'TAB-B',division:'Comercial'}];
 assert.equal(quoteTotal(items),1300);
 assert.equal(quoteTotal([{qty:5,price:0}]),0);
@@ -15,3 +15,14 @@ assert.equal(overdue({stage:'Ganado',followup:'2026-10-01'},'2026-10-12'),false)
 assert.equal(overdue({stage:'Solicitud recibida',followup:'2026-10-01'},'2026-10-12'),true);
 assert.equal(overdue({stage:'Solicitud recibida',followup:'2026-10-12'},'2026-10-12'),false);
 console.log('11 verificaciones de cálculos y reglas: OK');
+const form={contact:'Contacto canal',phone:'76071896',email:'canal@example.test',client:'Institución',final_segment:'Empresa privada',final_contact:'Contacto institución',final_email:'institucion@example.test',deadline:'2026-12-01',reseller_authorized:'no',is_tender:'no',validity_days:'30'};
+const request=buildRequest(form,items,'Canal registrado','user');
+assert.equal(request.reseller_authorized,false);assert.equal(request.is_tender,false);
+assert.equal(request.type,'B2B');assert.equal(request.validity_days,30);assert.equal(request.items.length,2);assert.equal(request.final_phone,null);
+assert.equal(buildRequest({...form,is_tender:'yes'},items,'Canal','user').type,'Gobierno / Licitación');
+assert.throws(()=>buildRequest({...form,phone:''},items,'Canal','user'),/obligatorios/);
+assert.throws(()=>buildRequest({...form,final_contact:''},items,'Canal','user'),/obligatorios/);
+assert.throws(()=>buildRequest({...form,validity_days:'0'},items,'Canal','user'),/vigencia/);
+assert.throws(()=>buildRequest({...form,validity_days:'1.5'},items,'Canal','user'),/vigencia/);
+assert.throws(()=>buildRequest({...form,is_tender:''},items,'Canal','user'),/licitación/);
+console.log('Formulario: campos obligatorios, Sí/No y vigencia verificados');
