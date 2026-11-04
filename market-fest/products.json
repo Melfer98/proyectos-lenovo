@@ -1,0 +1,218 @@
+[
+  {
+    "mpn": "82X700MUGJ",
+    "name": "IdeaPad Slim 3 15IRU8",
+    "spec": "Intel U300 · 15.6” FHD · 8 GB · 512 GB",
+    "price": 459,
+    "kit": "KT283XSV95",
+    "bundle": "Mochila B210 + McAfee"
+  },
+  {
+    "mpn": "82X700GCGJ",
+    "name": "IdeaPad Slim 3 15IRU8",
+    "spec": "Intel Core i3-1315U · 15.6” FHD · 8 GB · 512 GB",
+    "price": 499,
+    "kit": "KT283XSV96",
+    "bundle": "Mochila B210 + McAfee"
+  },
+  {
+    "mpn": "82XM016KGJ",
+    "name": "IdeaPad Slim 3 15ABR8",
+    "spec": "AMD Ryzen 5 5625U · 15.6” FHD · 16 GB · 512 GB",
+    "price": 559,
+    "kit": "KT283XSV97",
+    "bundle": "Maletín Lenovo + McAfee"
+  },
+  {
+    "mpn": "83RR00D5GJ",
+    "name": "IdeaPad Slim 3 15IWC11",
+    "spec": "Intel Core 5 320 · 15.6” FHD · 8 GB · 512 GB",
+    "price": 579,
+    "kit": "KT283XSV98",
+    "bundle": "Mouse 350 BT Breeze Moss + McAfee"
+  },
+  {
+    "mpn": "83KA00A7GJ",
+    "name": "IdeaPad Slim 3 15AHP10",
+    "spec": "AMD Ryzen 5 8540U · 15.3” WUXGA · 16 GB · 512 GB",
+    "price": 839,
+    "kit": "KT283XSV99",
+    "bundle": "Maletín + Mouse 530 Wireless + McAfee"
+  },
+  {
+    "mpn": "83RR002SGJ",
+    "name": "IdeaPad Slim 3 15IWC11",
+    "spec": "Intel Core 5 320 · 15.3” WUXGA · 16 GB · 512 GB",
+    "price": 779,
+    "kit": "KT284XSV00",
+    "bundle": "Mouse 350 BT Meta Grape + McAfee"
+  },
+  {
+    "mpn": "83K100PTGJ",
+    "name": "IdeaPad Slim 3 15IRH10",
+    "spec": "Intel Core i5-13420H · 15.3” WUXGA · 16 GB · 512 GB",
+    "price": 759,
+    "kit": "KT284XSV01",
+    "bundle": "Mouse 350 BT Luna Grey + McAfee"
+  },
+  {
+    "mpn": "83HX00DQGJ",
+    "name": "IdeaPad Slim 5 14AKP10",
+    "spec": "AMD Ryzen AI 5 330 · 14” WUXGA · 16 GB · 512 GB",
+    "price": 869,
+    "kit": "KT284XSV02",
+    "bundle": "Mouse 350 BT Luna Grey + McAfee"
+  },
+  {
+    "mpn": "83K700PDGJ",
+    "name": "IdeaPad Slim 3 15ARP10",
+    "spec": "AMD Ryzen 5 150 · 15.3” WUXGA · 24 GB · 512 GB",
+    "price": 825,
+    "kit": "KT284XSV03",
+    "bundle": "Mouse 350 BT Luna Grey + McAfee"
+  },
+  {
+    "mpn": "F0JC001ELD",
+    "name": "IdeaCentre AIO 24AKP10",
+    "spec": "AMD Ryzen 7 250 · 23.8” FHD · 16 GB · 512 GB",
+    "price": 959,
+    "kit": "KT284XSV04",
+    "bundle": "Teclado + mouse + McAfee"
+  },
+  {
+    "mpn": "83KT0072GJ",
+    "name": "IdeaPad 5 2-in-1 14AKP10",
+    "spec": "AMD Ryzen AI 5 330 · 14” WUXGA · 16 GB · 512 GB",
+    "price": 999,
+    "kit": "KT284XSV05",
+    "bundle": "Mouse Yoga Pro + McAfee"
+  },
+  {
+    "mpn": "83K100RDGJ",
+    "name": "IdeaPad Slim 3 15IRH10",
+    "spec": "Intel Core i5-13420H · 15.3” WUXGA · 16 GB · 1 TB",
+    "price": 1029,
+    "kit": "KT284XSV06",
+    "bundle": "Mochila B210 + McAfee"
+  },
+  {
+    "mpn": "83KA00A6GJ",
+    "name": "IdeaPad Slim 3 15AHP10",
+    "spec": "AMD Ryzen 7 8840HS · 15.3” WUXGA · 16 GB · 1 TB",
+    "price": 959,
+    "kit": "KT284XSV07",
+    "bundle": "Mouse 350 BT Meta Grape + McAfee"
+  },
+  {
+    "mpn": "83TD0039GJ",
+    "name": "Yoga 7 2-in-1 14AGP11",
+    "spec": "AMD Ryzen AI 5 430 · 14” WUXGA · 16 GB · 512 GB",
+    "price": 1099,
+    "kit": "KT284XSV08",
+    "bundle": "Yoga Pen 2 + Case + Mouse Yoga Pro + McAfee"
+  },
+  {
+    "mpn": "83KT004MGJ",
+    "name": "IdeaPad 5 2-in-1 14AKP10",
+    "spec": "AMD Ryzen AI 7 350 · 14” WUXGA · 16 GB · 512 GB",
+    "price": 1099,
+    "kit": "KT284XSV09",
+    "bundle": "Digital Pen + Mouse Yoga BT Cosmic Blue + McAfee"
+  },
+  {
+    "mpn": "F0JE002ALD",
+    "name": "IdeaCentre AIO 27AKP10",
+    "spec": "AMD Ryzen 7 250 · 27” FHD · 16 GB · 1 TB",
+    "price": 1099,
+    "kit": "KT284XSV10",
+    "bundle": "Teclado + mouse + McAfee"
+  },
+  {
+    "mpn": "83J1006SGJ",
+    "name": "IdeaPad Slim 5 16IRH10R",
+    "spec": "Intel Core 7 240H · 16” WUXGA · 32 GB · 512 GB",
+    "price": 1349,
+    "kit": "KT284XSV11",
+    "bundle": "Mochila B210 ECO + Mouse 530 Wireless + McAfee"
+  },
+  {
+    "mpn": "83JE00NRGJ",
+    "name": "LOQ 15IRX10",
+    "spec": "Intel Core i7-13700HX · 15.6” FHD · 16 GB · 512 GB",
+    "price": 1529,
+    "kit": "KT284XSV12",
+    "bundle": "Mochila Legion + McAfee"
+  },
+  {
+    "mpn": "ZAF10147PA",
+    "name": "Lenovo Tab One",
+    "spec": "LTE · 8.7” HD · 4 GB · 128 GB",
+    "price": 119,
+    "kit": "KT284XSV13",
+    "bundle": "Folio Case + Earbuds Lenovo E310 + McAfee"
+  },
+  {
+    "mpn": "ZAF00113PA",
+    "name": "Lenovo Tab One",
+    "spec": "WiFi · 8.7” HD · 4 GB · 128 GB",
+    "price": 149,
+    "kit": "KT284XSV14",
+    "bundle": "Folio Case + McAfee"
+  },
+  {
+    "mpn": "ZAFR1018PA",
+    "name": "Lenovo Idea Tab",
+    "spec": "WiFi · 11” 2.5K · 6 GB · 128 GB",
+    "price": 219,
+    "kit": "KT284XSV15",
+    "bundle": "Folio Case + Pen + McAfee"
+  },
+  {
+    "mpn": "ZAFR0880PA",
+    "name": "Lenovo Idea Tab",
+    "spec": "WiFi · 11” 2.5K · 8 GB · 128 GB",
+    "price": 239,
+    "kit": "KT284XSV16",
+    "bundle": "Folio KB + Pen + Earbuds + Mouse 350 BT Breeze Moss + McAfee"
+  },
+  {
+    "mpn": "ZADX0158PA",
+    "name": "Lenovo Tab Plus",
+    "spec": "WiFi · 11.5” 2K · 8 GB · 256 GB",
+    "price": 265,
+    "kit": "KT284XSV17",
+    "bundle": "Sleeve + Moto Buds + Mouse 350 BT Breeze Moss + McAfee"
+  },
+  {
+    "mpn": "67DDKAC6LA",
+    "name": "Lenovo L24-4C",
+    "spec": "IPS | 1920 × 1080 | 144 Hz · 23.8” · Cloud Grey",
+    "price": 99,
+    "kit": "KT284XSV18",
+    "bundle": "Cable HDMI + McAfee"
+  },
+  {
+    "mpn": "67DEKAC1LA",
+    "name": "Lenovo L27-4C",
+    "spec": "IPS | 1920 × 1080 | 144 Hz · 27” · Cloud Grey",
+    "price": 125,
+    "kit": "KT284XSV19",
+    "bundle": "Cable HDMI + McAfee"
+  },
+  {
+    "mpn": "67D4GAC3LA",
+    "name": "Lenovo 25-10",
+    "spec": "IPS | 1920 × 1080 | 320 Hz · 24.5” · Eclipse Black",
+    "price": 139,
+    "kit": "KT284XSV20",
+    "bundle": "Cable DisplayPort + McAfee"
+  },
+  {
+    "mpn": "68C6GAC4LA",
+    "name": "Lenovo 27Q-10",
+    "spec": "IPS | 2560 × 1440 | 320 Hz · 27” · Raven Black",
+    "price": 199,
+    "kit": "KT284XSV21",
+    "bundle": "Cable DisplayPort + McAfee"
+  }
+]
