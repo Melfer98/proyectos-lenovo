@@ -35,7 +35,7 @@ $('sale').addEventListener('submit',async event=>{
  try{
  await api('/rest/v1/market_fest_sales',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify(payload)});
  status('¡Venta registrada! '+payload.length+' kit(s) guardados. Referencia: '+requestId+'.','success');
- requestId=uuid();lines=[{id:uuid(),mpn:'',quantity:1}];$('notes').value='';renderLines();void loadCampaignTotal();
+ requestId=uuid();lines=[{id:uuid(),mpn:'',quantity:1}];$('notes').value='';renderLines();
  }catch(error){status(error.code==='23505'?'Alguno de estos kits ya fue registrado para este cliente y factura. No se guardaron kits adicionales en este intento. Solicita revisar el registro antes de reenviar.':error.code==='23514'?'No se pudo validar un kit, su precio o los datos de factura. Actualiza la página y verifica el registro.':'No pudimos confirmar el registro. Revisa tu conexión y vuelve a intentar. Los datos permanecen en el formulario.','error');}
  finally{controls.forEach(el=>el.disabled=false);}
 });
@@ -43,15 +43,3 @@ $('adminLink').onclick=event=>{event.preventDefault();$('admin').showModal();};$
 $('login').onsubmit=async event=>{event.preventDefault();$('adminStatus').textContent='Verificando acceso…';try{const auth=await api('/auth/v1/token?grant_type=password',{method:'POST',body:JSON.stringify({email:$('adminEmail').value.trim(),password:$('adminPassword').value})});adminToken=auth.access_token;$('adminPassword').value='';const staff=await api('/rest/v1/project_staff?select=user_id&user_id=eq.'+encodeURIComponent(auth.user.id),{},adminToken);if(!staff.length)throw new Error('Acceso no autorizado');records=await api('/rest/v1/market_fest_sales?select=*&order=created_at.desc&limit=1000',{},adminToken);$('login').hidden=true;$('adminStatus').textContent=records.length+' registros más recientes (máximo 1,000).';$('records').innerHTML='<div class="actions"><button id="export" class="small">Exportar CSV</button><span>Total: '+money(records.reduce((s,r)=>s+r.quantity*r.unit_price,0))+'</span></div><div class="scroll"><table><thead><tr>'+['Fecha','Vendedor','Cliente','Factura','Kit','MPN','Cantidad','Precio USD'].map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+records.map(r=>'<tr>'+[r.sale_date,r.seller,r.company,r.invoice,r.kit,r.mpn,r.quantity,money(r.unit_price)].map(x=>'<td>'+esc(x)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';$('export').onclick=()=>{const cols=['id','registration_id','created_at','seller','seller_email','client_code','company','invoice','sale_date','kit','mpn','quantity','unit_price','notes'];const cell=v=>'"'+String(v??'').replace(/^[=+@\-\t\r]/,"'$&").replace(/"/g,'""')+'"';const blob=new Blob(['\uFEFF'+[cols,...records.map(r=>cols.map(c=>r[c]))].map(r=>r.map(cell).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Lenovo_Market_Fest_Ventas.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);};}catch{$('adminStatus').textContent='No fue posible ingresar. Verifica tus credenciales y que tu cuenta tenga autorización de equipo interno.';adminToken='';}finally{$('adminPassword').value='';}};
 try{const r=await fetch('products.json');if(!r.ok)throw Error();products=await r.json();renderLines();}catch{$('submit').disabled=true;status('No se pudo cargar el catálogo. Actualiza la página para volver a intentar.','error');}
 
-async function loadCampaignTotal(){
- const target=$('campaignSalesTotal');if(!target)return;
- try{
-  const rows=await api('/rest/v1/market_fest_totals?select=total_sales&id=eq.1',{cache:'no-store'});
-  const total=Number(rows?.[0]?.total_sales);
-  if(!rows?.length||!Number.isFinite(total))throw Error('Total unavailable');
-  target.textContent=money(total);
- }catch{target.textContent='No disponible';}
-}
-void loadCampaignTotal();
-setInterval(()=>{if(!document.hidden)void loadCampaignTotal();},30000);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)void loadCampaignTotal();});
