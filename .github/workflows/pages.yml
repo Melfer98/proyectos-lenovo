@@ -22,11 +22,15 @@ jobs:
         with:
           node-version: '22'
       - run: node tests/domain.test.mjs
+      - run: node market-fest/resultados/analytics.test.mjs
+      - run: node market-fest/resultados/report-flow.test.mjs
       - run: |
           mkdir _site
           cp index.html styles.css config.js app.js domain.js _site/
           mkdir -p _site/market-fest
           cp market-fest/index.html market-fest/app.js market-fest/products.json _site/market-fest/
+          mkdir -p _site/market-fest/resultados
+          cp market-fest/resultados/index.html market-fest/resultados/report.js market-fest/resultados/analytics.mjs _site/market-fest/resultados/
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
